@@ -1,0 +1,799 @@
+/*
+    Begin T classes
+*/
+html{
+    width: 100%;
+    height: 100%;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+}
+body{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: OpenSansRegular, sans-serif;
+    color: #FFFFFF;
+    font-size: 12px;
+    zoom: 0.88;
+}
+t-views{
+    display: none !important;
+}
+
+t-canvas{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+t-canvas:before{
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(224deg, #793131 0%, #1B193D 100%);
+    z-index: 500;
+}
+t-canvas:after{
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(33, 36, 36, 0.65);
+    z-index: 600;
+}
+
+t-canvas > .view{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    overflow: hidden;
+    display: block;
+}
+/*
+    End T classes
+*/
+/* Loading */
+t-loading{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9000;
+    background: rgba(0, 0, 0, 0.2)
+}
+
+t-loading .spinner{
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+}
+/* Buttons */
+abutton{
+    position: relative;
+    box-sizing: border-box;
+    text-decoration: none;
+    display: block;
+    width: 80%;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 30px;
+    border-radius: 30px;
+    font-size: 1.3em;
+    text-align: center;
+    font-family: OpenSansBold, sans-serif;
+    color: #FFFFFF;
+    line-height: 60px;
+    text-transform: uppercase;
+    transition: 0.5s;
+}
+abutton.material{
+    padding: 16px 15px !important;
+}
+abutton.material p{
+    float: right;
+    padding: 0 15px;
+    font-size: 18px;
+    line-height: 28px;
+    color: white;
+    font-family: OpenSansBold, sans-serif;
+    margin: 0;
+}
+abutton.iconButton{
+    text-align: left;
+    padding-left: 30px;
+}
+abutton.iconButton > .icon{
+    height: 40px;
+    width: auto;
+    position: absolute;
+    top: 0; bottom: 0;
+    right: 10px;
+    margin: auto 0;
+}
+abutton:active{
+    background: rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+abutton.noLabel{
+    width: 60px;
+    padding: 0;
+}
+abutton.noLabel > .icon{
+    height: 30px;
+    right: 0; left: 0;
+    margin: auto;
+}
+/* Person */
+person{
+    position: absolute;
+    width: 50%;
+    top: 0; right: 0; bottom: 0; left: 0;
+    margin: auto;
+}
+person > a.head{
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin-top: 35%;
+}
+person > a.head > .headImg{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    z-index: 3000;
+}
+person > a.head > .headShadow{
+    position: absolute;
+    width: 180%;
+    height: 180%;
+    top: -40%;
+    left: -40%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(0,0,0,1)), color-stop(50%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+    background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,1) 0%,rgba(0,0,0,0) 50%); /* Chrome10+,Safari5.1+ */
+    background: radial-gradient(ellipse at center,  rgba(0,0,0,1) 0%,rgba(0,0,0,0) 50%); /* W3C */
+    opacity: 0.4;
+    z-index: 2000;
+}
+person > h2.name{
+    position: absolute;
+    top: -35%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5em;
+    margin: 0;
+    text-shadow: 0px 0px 19px rgba(0,0,0,0.50);
+}
+person > h2.name > a{
+    color: #BBA1A1;
+    text-decoration: none;
+}
+person > a.points{
+    display: block;
+    position: absolute;
+    top: -10%;
+    right: -20%;
+    color: #FFFFFF;
+    font-family: OpenSansBold, sans-serif;
+    font-size: 1.1em;
+    font-style: italic;
+    text-decoration: none;
+    padding: 0 0 0 16px;
+}
+person > a.points > img, conversation a.points > img{
+    width: 12px;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+person.small{
+    width: 20%;
+}
+person.small > a.head{
+    margin: 0;
+}
+person.small > h2.name{
+    display: none;
+}
+person.small > a.points{
+    display: none;
+}
+person.medium{
+    width: 40%;
+}
+person.medium > a.head{
+    margin-top: 0;
+    margin-bottom: 35%;
+}
+person.medium > h2.name{
+    top: initial;
+    bottom: -35%;
+}
+/* Captions */
+acaption{
+    display: block;
+    position: relative;
+    width: 100% !important ;
+    background: rgba(0,0,0,0.3);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 8% 8% 8% 15%;
+}
+acaption > p.theCaption{
+    font-size: 1.3em;
+    margin: 0;
+    padding: 0 0 10px 0;
+}
+acaption > div.meta, reply-view div.meta{
+    font-style: italic;
+}
+acaption > div.meta > a, reply-view div.meta > a{
+    font-style: normal;
+    text-decoration: none;
+    color: #FFFFFF;
+}
+acaption > div.meta > a.theUser, reply-view div.meta >a.theUser{
+    color: #C8B1B1;
+}
+/* Back Button */
+.backButton{
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    position: absolute;
+    top: 0; left: 0;
+    height: 28%;
+    background: rgba(0, 0, 0, 0);
+    z-index: 7000;
+}
+.backButton:active{
+    background: rgba(0, 0, 0, 0.3);
+}
+.backButton > img.icon{
+    height: 14px;
+}
+/* Headers */
+header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 28%;
+    width: 100%;
+}
+header .backButton{
+    height: 100%;
+}
+header > h1.title{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 30px;
+    font-size: 1.6em;
+    padding: 0 18%;
+    margin-top: -15px;
+}
+/* Default View */
+default-view > #asydeLogo{
+    position: absolute;
+    width: 156px;
+    height: auto;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    margin: auto;
+}
+default-view > #welcomeMessage{
+    position: absolute;
+    width: 80%;
+    top: 38%;
+    left: 0; right: 0;
+    margin: 0 auto;
+    font-size: 1.4em;
+    text-align: center;
+}
+default-view > #fbButton{
+    position: absolute;
+    width: 60%;
+    top: 54%;
+    left: 0; right: 0;
+    margin: 0 auto;
+}
+default-view > #termsLink{
+    position: absolute;
+    width: 60%;
+    bottom: 10%;
+    left: 0; right: 0;
+    margin: 0 auto;
+    text-align: center;
+    color: #BBA1A1;
+    font-size: 1.1em;
+    text-decoration: none;
+}
+
+/* Dashboard View */
+dashboard-view{
+    
+}
+
+dashboard-view > #thePerson{
+    position: relative;
+    width: 100%;
+    height: 50%;
+    top: 0;
+    left: 0
+}
+
+dashboard-view > #thePerson > .recordButton{
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 10%;
+    margin: auto 0;
+    z-index: 4000;
+}
+
+dashboard-view > nav{
+    position: relative;
+    text-align: center;
+    width: 100%;
+    height: 50%;
+}
+dashboard-view > nav > abutton{
+    display: inline-block;
+    margin-bottom: 6%;
+}
+dashboard-view > nav > #logoutButton{
+    color: #FFFFFF;
+}
+
+/* Sydes View */
+sydes-view{
+    
+}
+
+sydes-view > ul#sydes{
+    width: 100%;
+    height: 100%;
+    list-style-type: none;
+    overflow: scroll;
+    margin: 0;
+    padding: 9% 0%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+}
+
+sydes-view > ul#sydes > li{
+    margin: 0;
+    display: block;
+    width: 100%;
+}
+sydes-view > ul#sydes > li.syde > a{
+    display: block;
+    width: 100%;
+    font-size: 1.6em;
+    padding: 8% 18%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    background: rgba(0, 0, 0, 0);
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+sydes-view > ul#sydes > li.syde > a:active{
+    background: rgba(0, 0, 0, 0.3);
+}
+sydes-view > abutton.buttonRight{
+    padding: 15px 0px;
+    right: 10%;
+    top: 14%;
+    margin-top: -30px;
+    position: absolute;
+    }
+sydes-view > abutton.buttonRight .icon{
+    height: 25px;
+}
+
+syde-view > abutton.buttonRight{
+    padding: 15px 0px;
+    right: 10%;
+    top: 14%;
+    margin-top: -30px;
+    position: absolute;
+    }
+
+/* Default View */
+syde-view {
+    
+}
+syde-view > ul#conversations {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 72%;
+    position: absolute;
+    bottom: 0; left: 0;
+    overflow: scroll;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+}
+syde-view > ul#conversations > li.conversation {
+    margin: 0 0 1px 0;
+    width: 100%;
+    position: relative;
+}
+syde-view > ul#conversations > li.conversation > person{
+    right: initial;
+    left: -9%;
+    margin: auto 0;
+}
+
+reply-view > header{
+    -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+reply-view > header > .conversationHeaderWrap{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 5% 0 18%;
+}
+reply-view > header > .conversationHeaderWrap h1{
+    margin: 0 0 0.67em 0;
+    font-size: 1.6em;
+}
+
+reply-view > .swiper-container{
+    width: 100%;
+    top: 28%;
+    height: 72%;
+}
+reply-view .swiper-container .swiper-container{
+    height: 100%;
+}
+reply-view .swiper-slide {
+    width:100%;
+    height: 100%;
+    text-align: center;
+    font-size: 18px;
+}
+
+reply-view .swiper-wrapper {
+    width: 100%;
+    height: 100%;
+}
+reply-view div.head{
+    display: block;
+    position: relative;
+    width: 100%;
+    margin-top: 0;
+}
+reply-view div.head > .headImg{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    z-index: 3000;
+    transition:         all .4s;
+    -webkit-transition: all .4s;
+}
+reply-view div.head > .headShadow{
+    position: absolute;
+    width: 100%;
+    height: 180%;
+    top: -40%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(0,0,0,1)), color-stop(50%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+    background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,1) 0%,rgba(0,0,0,0) 50%); /* Chrome10+,Safari5.1+ */
+    background: radial-gradient(ellipse at center,  rgba(0,0,0,1) 0%,rgba(0,0,0,0) 50%); /* W3C */
+    opacity: 0.4;
+    z-index: 2000;
+}
+
+reply-view conversation{
+    position: relative;
+    width:100%;
+}
+reply-view conversation img{
+    z-index: 10;
+}
+reply-view conversation h2.nameConv{
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 0 0 8% 0;
+    font-size: 1.6em;
+    margin: 0;
+    text-shadow: 0px 0px 19px rgba(0,0,0,0.50);
+}
+reply-view conversation h2.nameConv a{
+    color: #BBA1A1;
+    text-decoration: none;
+}
+reply-view conversation a.points{
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 50%;
+    color: #FFFFFF;
+    font-family: OpenSansBold, sans-serif;
+    font-size: 1.1em;
+    font-style: italic;
+    text-decoration: none;
+    padding: 0 0 0 16px;
+}
+reply-view conversation a.replies{
+    width: 100%;
+    text-decoration: none;
+    color:white;
+    padding-top:6%;
+    float:left;
+}
+reply-view conversation small{
+    font-style: italic;
+    width: 100%;
+    clear: both;
+    float: left;
+}
+reply-view controls{
+    z-index: 0;
+    width: 80%;
+    height: 60px;
+    margin: 8% 10% 0 10%;
+    clear: both;
+    float: left;
+    display: none;
+}
+reply-view controls abutton{
+    opacity: 0;
+}
+reply-view controls abutton:first-of-type{
+    float: left;
+}
+reply-view controls abutton:last-of-type{
+    float: right;
+}
+reply-view controls abutton.controlMiddle{
+    color:#FF1E33;
+    width:auto;
+}
+reply-view abutton.replyDown{
+background: transparent;
+float:left;
+opacity: 0;
+width: 100%;
+clear: both;
+}
+
+reply-view abutton.playButton{
+    position: absolute;
+    top: 50%;
+    margin-top: -30px;
+    background: unset;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    z-index: 4000;
+}
+
+reply-view table{
+    width: 100%;
+    height: 100%;
+}
+reply-view table td{
+    vertical-align: middle;
+}
+
+reply-view .swiper-container-h .swiper-slide.swiper-slide-next div.head > img{
+        transform: translateX(-140%) scale(0.5);
+        transition:         all .4s;
+        -webkit-transition: all .4s;
+}
+reply-view .swiper-container-h .swiper-slide.swiper-slide-prev div.head > img{
+        transform: translateX(140%) scale(0.5);
+        transition:         all .4s;
+        -webkit-transition: all .4s;
+}
+
+reply-view #circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+reply-view .circle_animation {
+  stroke-dasharray: 640;
+  stroke-dashoffset: 640;
+  stroke-width: 30;
+  transition: all 1s linear;
+  fill: transparent;
+  stroke: rgba(255,255,255,0.2);
+}
+
+reply-view svg {
+   -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    transform-origin: 50% 50% 0px;
+    overflow: visible;
+}
+reply-view svg g {
+    transform-origin: 50% 50% 0px;
+}
+
+
+/* RECORD VIEW */
+record-view table{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    text-align: center;
+    vertical-align: middle;
+}
+record-view div.head{
+    display: block;
+    position: relative;
+    width: 100%;
+    margin-top: 0;
+}
+record-view div.head > .headImg{
+    position: relative;
+    width: 25px;
+    height: 25px;
+    z-index: 3000;
+    transition:         all .4s;
+    -webkit-transition: all .4s;
+}
+record-view div.head > .headShadow{
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: 50%;
+    margin-top: -150px;
+    margin-left: -150px;
+    left: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(0,0,0,1)), color-stop(50%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+    background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,1) 0%,rgba(0,0,0,0) 50%); /* Chrome10+,Safari5.1+ */
+    background: radial-gradient(ellipse at center,  rgba(0,0,0,1) 0%,rgba(0,0,0,0) 50%); /* W3C */
+    opacity: 0.4;
+    z-index: 2000;
+}
+record-view div.head > .buttonRecord{
+    margin: 0 auto;
+    z-index: 3000;
+    position: absolute;
+    left: 50%;
+    margin-left: -30px;
+    top: 50%;
+    margin-top: -30px;
+}
+
+record-view .textRecord{
+    position: absolute;
+    bottom: 10%;
+    width: 60%;
+    margin: 0 20% 0 20%;
+    text-align: center;
+    font-size: 1.1em;
+}
+record-view .recordMenu{
+    position: absolute;
+    bottom: 0;
+    opacity: 0;
+    width: 100%;
+    height: 28%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-style: italic;
+    color:rgba(255,255,255,0.6);
+}
+record-view textarea{
+    background: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    border: none;
+    padding: 8%;
+    outline: none;
+    height: 65%;
+    display: inline-block;
+    font-size: 1.4em;
+    font-style: italic;
+    color:rgba(255,255,255,0.6);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+record-view textarea::-webkit-input-placeholder { color: rgba(255,255,255,0.6); }
+record-view textarea:-moz-placeholder { color: rgba(255,255,255,0.6); }
+record-view textarea::-moz-placeholder { color: rgba(255,255,255,0.6); }
+record-view textarea:-ms-input-placeholder { color: rgba(255,255,255,0.6); }
+
+
+record-view table.recordSelectType{
+    height: 35%;
+    font-size: 1.4em;
+    position: absolute;
+    top: 65%;
+}
+record-view table.recordSelectType td{
+    padding: 0 8%;
+}
+record-view table.recordSelectType td label{
+     float: left;
+}
+record-view table.recordSelectType td #syde_type{
+    float: left;
+    height: 26px;
+    font-size: 1em;
+    outline: none;
+    font-style: italic;
+    background: none;
+    color:rgba(255,255,255,0.6);
+    border: none;
+}
+record-view table.recordSelectType td abutton.recordDone{
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    background-color: rgba(101,169,26,0.6);
+}
+
+record-view svg {
+   -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    z-index: 3000;
+    transform-origin: 50% 50% 0px;
+}
+record-view svg g {
+    transform-origin: 50% 50% 0px;
+}
+
+record-view .circle_animation {
+  stroke-dasharray: 440;
+  stroke-dashoffset: 440;
+  transition: all 1s linear;
+}
+
+record-view .buttonRerecord{
+    opacity: 1;
+    background: none;
+    background: unset;
+    position: absolute;
+    margin-top: -30px;
+    top: 50%;
+    right: 5%;
+    z-index: 4000;
+}

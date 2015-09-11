@@ -1,0 +1,25 @@
+{
+    "name": "My ToDo App",
+    "version": "1.0",
+    "controllers": {
+        "todo": {
+            "controller": "<script type='text/javascript' src='app/controllers/todo.js'></script>"
+        }
+    },
+    "views": {
+        "todo": {
+            "view": "<t-view name='todo' src='todo.html'></t-view>"
+        }
+    },
+    "models": {
+        "tasks": {
+            "model": "<script type='text/javascript' src='app/models/tasks.js'></script>"
+        }
+    },
+    "components": {
+        "a-task": {
+            "controller": "<script type='text/javascript' src='app/controllers/components.js'></script>",
+            "view": "<t-component name='a-task' src='aTask.html' attributes='icon, label, material, likes'></t-component>"
+        }
+    }
+}

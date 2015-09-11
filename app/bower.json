@@ -1,0 +1,18 @@
+{
+  "name": "t-app",
+  "version": "0.0.1",
+  "authors": [
+    "Franky Chanyau <franky@movingvillage.com>"
+  ],
+  "license": "Apache License",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "t-js": "frankychanyau/t-js"
+  }
+}

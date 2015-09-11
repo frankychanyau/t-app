@@ -1,0 +1,38 @@
+[
+    {
+        "id": "all",
+        "name": "All Sydes"
+    },
+    {
+        "id": "news",
+        "name": "News"
+    },
+    {
+        "id": "politics",
+        "name": "Politics"
+    },
+    {
+        "id": "funny",
+        "name": "Funny"
+    },
+    {
+        "id": "music",
+        "name": "Music"
+    },
+    {
+        "id": "movies",
+        "name": "Movies"
+    },
+    {
+        "id": "comedy",
+        "name": "Comedy"
+    },
+    {
+        "id": "reading",
+        "name": "Reading"
+    },
+    {
+        "id": "forest-fires",
+        "name": "Forest Fires"
+    }
+]

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+        
+        <title>t.js</title>
+        
+        <!-- Bower Components -->
+        <script type="text/javascript" src="app/bower_components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="app/bower_components/underscore/underscore-min.js"></script>
+        <script type="text/javascript" src="app/bower_components/rivets/dist/rivets.bundled.min.js"></script>
+        <script type="text/javascript" src="app/bower_components/stapes/stapes.min.js"></script>
+        <script type="text/javascript" src="app/bower_components/velocity/velocity.min.js"></script>
+        <script type="text/javascript" src="app/bower_components/velocity/velocity.ui.min.js"></script>
+        <!-- t.js -->
+        <script type="text/javascript" src="app/t.js"></script>
+        <!-- Models -->
+        <script type="text/javascript" src="app/models/user.js"></script>
+        <!-- Controllers -->
+        <script type="text/javascript" src="app/controllers/default.js"></script>
+        <!-- Component Controllers -->
+        <script type="text/javascript" src="app/components/abutton.js"></script>
+
+    </head>
+    
+    <body>
+        <t-loading>
+            Loading...
+        </t-loading>
+        
+        <t-canvas>
+        </t-canvas>
+        
+        <t-views>
+            <t-view name="default" src="default.html"></t-view>
+            <t-components>
+                <t-component name="abutton" src="abutton.html" attributes="icon, label, material, likes"></t-component>
+            </t-components>
+        </t-views>
+    
+        <!-- Initialize t.js App -->
+        <script type="text/javascript" src="app/app.js"></script>
+    </body>
+</html>
