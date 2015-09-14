@@ -1,0 +1,35 @@
+{
+  "name": "t-js",
+  "description": "",
+  "authors": [
+    "Franky Chanyau <franky@movingvillage.com>"
+  ],
+  "main": [
+    "t.js"
+  ],
+  "license": "Apache License",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "rivets": "*",
+    "underscore": "*",
+    "jquery": "*",
+    "stapes": "*",
+    "velocity": "*"
+  },
+  "homepage": "https://github.com/frankychanyau/t-js",
+  "_release": "75156cc3cf",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "75156cc3cfb2b00a25912a722c2077c0fa42b9d6"
+  },
+  "_source": "git://github.com/frankychanyau/t-js.git",
+  "_target": "*",
+  "_originalSource": "frankychanyau/t-js"
+}

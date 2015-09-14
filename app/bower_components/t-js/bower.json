@@ -1,0 +1,24 @@
+{
+  "name": "t-js",
+  "description": "",
+  "version": "0.0.1",
+  "authors": [
+    "Franky Chanyau <franky@movingvillage.com>"
+  ],
+  "main": ["t.js"],
+  "license": "Apache License",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "rivets": "*",
+    "underscore": "*",
+    "jquery": "*",
+    "stapes": "*",
+    "velocity": "*"
+  }
+}
