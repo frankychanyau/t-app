@@ -24,11 +24,11 @@
     "velocity": "*"
   },
   "homepage": "https://github.com/frankychanyau/t-js",
-  "_release": "3a2bc8a8d0",
+  "_release": "95900ad729",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "3a2bc8a8d0054ebe537294c3f7049d00b4afde3d"
+    "commit": "95900ad729761b8b23a25a15af87b7b438f2ef90"
   },
   "_source": "git://github.com/frankychanyau/t-js.git",
   "_target": "*",
