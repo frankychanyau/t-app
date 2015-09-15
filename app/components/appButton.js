@@ -1,5 +1,5 @@
-t.components.abutton = t.libraries.Component.subclass({
-    label: "abutton",
+t.components.appButton = t.libraries.Component.subclass({
+    label: "appButton",
     icon: false,
     constructor: function($el, attr){
         this.icon = typeof attr.icon !== "undefined" ? attr.icon : false;
@@ -8,16 +8,16 @@ t.components.abutton = t.libraries.Component.subclass({
         this.likes = typeof attr.likes !== "undefined" ? attr.likes : false;
         
         if(!this.icon){
-            $el.children("img.icon").remove();
+            $el.find("img.icon").remove();
         }else{
             $el.addClass("iconButton")
         }
         if(!this.label){
-            $el.addClass("noLabel").children("span").remove();
+            $el.addClass("noLabel").find("span").remove();
         }
         if(this.material){
             var html = (this.likes?this.material+'<p>'+this.likes+'</p>':this.material)
-            $el.addClass("noLabel").html(html).children("span").remove();
+            $el.addClass("noLabel").html(html).find("span").remove();
         }
     }
 });
