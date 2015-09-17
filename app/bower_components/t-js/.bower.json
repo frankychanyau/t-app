@@ -21,14 +21,15 @@
     "underscore": "*",
     "jquery": "*",
     "stapes": "*",
-    "velocity": "*"
+    "velocity": "*",
+    "grapnel": "*"
   },
   "homepage": "https://github.com/frankychanyau/t-js",
-  "_release": "95900ad729",
+  "_release": "93b281bbfb",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "95900ad729761b8b23a25a15af87b7b438f2ef90"
+    "commit": "93b281bbfbc0ef700f2940e66e7944bf1ce8b3a3"
   },
   "_source": "git://github.com/frankychanyau/t-js.git",
   "_target": "*",

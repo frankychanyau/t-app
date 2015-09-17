@@ -21,7 +21,7 @@ var t = typeof t !== "undefined" ? t : window.t;
 
 t.libraries.App = Stapes.subclass({
     Views: {},
-    controller: {},
+    controller: false,
     isCordova: false,
     appController: {},
     constructor: function(appController){
@@ -39,6 +39,12 @@ t.libraries.App = Stapes.subclass({
             })
         }
     },
+    showLoading: function(){
+        $("t-loading").show().velocity({ opacity: 1 }, { duration: 800 });
+    },
+    hideLoading: function(){
+        $("t-loading").velocity({ opacity: 0 }, { duration: 800, display: "none" });
+    },
     init: function(){
         var self = this;
         this.loadViews();
@@ -49,8 +55,58 @@ t.libraries.App = Stapes.subclass({
         this.Views.on("ready", function(){
             self.Views.registerAllComponents();
             self.bindControllerToPage(self.appController);
+            self.initRouter();
             self.appController.ready(self);
         })
+    },
+    _construct: function(controller, args){
+        function Controller() {
+            return controller.apply(this, args);
+        }
+        Controller.prototype = controller.prototype;
+        return new Controller();
+    },
+    goTo: function(controller, method, args){
+        t.controllers[controller].proto({
+            __name: controller
+        });
+        var construct = true;
+        if(this.controller){
+            if(this.controller.__name === controller){
+                construct = false;
+            }
+        }
+        if(construct){
+            this.controller = this._construct(t.controllers[controller], []);
+        }
+        this.controller[method].apply(t.app.controller, args);
+    },
+    initRouter: function(){
+        var self = this;
+        this.router = new Grapnel({ pushState: true });
+        if(typeof this.appController.routes !== "undefined"){
+            _.each(this.appController.routes, function(action, route){
+                if(typeof action !== "function"){
+                    var parts = action.split(".");
+                    var controller = parts[0];
+                    var method = typeof parts[1] !== "undefined" ? parts[1] : "index";
+                    self.router.get(route, function(request){
+                        self.goTo(controller, method, [request]);
+                    });
+                }else{
+                    self.router.get(route, function(request){
+                        action.apply(self.appController, [request]);
+                    });
+                }
+            })
+        }
+    },
+    navigate: function(route, showLoading){
+        showLoading = typeof showLoading !== "undefined" ? showLoading : true;
+        if(showLoading){
+            this.showLoading();
+        }
+        this.router.navigate(route);
     },
     bindControllerToPage: function(controller){
         rivets.bind($("html"), controller);
@@ -82,6 +138,11 @@ t.libraries.Component = Stapes.subclass({
     attr: {},
     constructor: function($el, attrs){
         this.attr = attrs;
+    },
+    navigateTo: function(e, self){
+        var href = $(this).attr("href");
+        t.app.navigate(href);
+        return false;
     }
 });
 
@@ -94,7 +155,6 @@ t.libraries.Views = Stapes.subclass({
         var self = this;
         this.dir = typeof dir !== "undefined" ? dir : "app/views/";
         this.staged = [];
-        this.history = [];
         this.views = [];
         this.components = [];
         this.loadAllViews();
@@ -162,6 +222,7 @@ t.libraries.Views = Stapes.subclass({
         return html;
     },
     uncomment: function(html){
+        html = typeof html !== "undefined" ? html : "";
         html = html.replace("<!--[[ ", "");
         html = html.replace(" ]]-->", "");
         return html;
@@ -187,6 +248,7 @@ t.libraries.Views = Stapes.subclass({
                 var attributes = self.getAttributes($el);
 
                 var controllerName = self.componentControllerName(name);
+                
                 var componentController = typeof t.components[controllerName] !== "undefined" ? new t.components[controllerName]($el, attributes) : new t.libraries.Component($el, attributes);
                 
                 return componentController;
@@ -253,7 +315,6 @@ t.libraries.Views = Stapes.subclass({
         this.hideOthers(view);
         t.app.emit("view-show");
         view.show();
-        this.history.push(view.id);
     },
     hideOthers: function(view){
         t.app.emit("view-hide");
@@ -268,6 +329,10 @@ t.libraries.Views = Stapes.subclass({
 })
 
 t.libraries.Controller = Stapes.subclass({
+    __name: "app",
+    ready: function(){
+        
+    },
     render: function(viewID, onShow, onHide){
         var $view = $('t-views > t-view[name="' + viewID + '"]');
         var view = t.app.Views.stage($view, this, onShow, onHide);
@@ -281,10 +346,10 @@ t.libraries.Controller = Stapes.subclass({
         this.$view.fadeOut();
     },
     showLoading: function(){
-        $("t-loading").show().velocity({ opacity: 1 }, { duration: 800 });
+        t.app.showLoading();
     },
     hideLoading: function(){
-        $("t-loading").velocity({ opacity: 0 }, { duration: 800, display: "none" });
+        t.app.hideLoading();
     },
     _construct: function(controller, args){
         function Controller() {
@@ -293,32 +358,16 @@ t.libraries.Controller = Stapes.subclass({
         Controller.prototype = controller.prototype;
         return new Controller();
     },
-    goTo: function(controller, args){
-        t.app.controller = this._construct(t.controllers[controller], args);
-    },
-    goto: function(e, self){
-        var controller = $(this).attr("href");
-        self.goTo(controller);
-        return false;
+    goTo: function(controller, method, args){
+        t.app.goTo(controller, method, args);
     },
     back: function(e, self){
-        var history = t.app.Views.history;
-        var controller = $(this).attr("href");
-        if(history.length > 1){
-            history.splice(-1, 1);
-            var lastHistoryID = history.length - 1;
-            var stagedID = history[lastHistoryID];
-            var view = t.app.Views.staged[stagedID];
-            history.splice(-1, 1);
-            if(typeof view !== "null"){
-                t.app.Views.show(view);
-            }else{
-                self.goTo(controller);
-            }
-        }else{
-            self.goTo(controller);
-        }
-        
+        window.history.go(-1);
+        return false;
+    },
+    navigateTo: function(e, self){
+        var href = $(this).attr("href");
+        t.app.navigate(href);
         return false;
     }
 })
