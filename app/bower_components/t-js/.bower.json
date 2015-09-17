@@ -25,11 +25,11 @@
     "grapnel": "*"
   },
   "homepage": "https://github.com/frankychanyau/t-js",
-  "_release": "93b281bbfb",
+  "_release": "15155dd95e",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "93b281bbfbc0ef700f2940e66e7944bf1ce8b3a3"
+    "commit": "15155dd95ea61ce4abb2a16a536019ed20a441a8"
   },
   "_source": "git://github.com/frankychanyau/t-js.git",
   "_target": "*",
